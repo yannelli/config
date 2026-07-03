@@ -1,70 +1,148 @@
 {
-  "$schema": 
-  "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json", 
-  "version": 4, "final_space": false, "palette": {
-    "claude": "#D97757", "claude-deep": "#BF5B3F", "kraft": "#E8DCC4", "ivory": 
-    "#F5F0E6", "ink": "#1F1F1E", "char": "#3D3D3A", "muted": "#8C8A82", "sage": 
-    "#8BA888", "berry": "#A24E5A", "sky": "#6A8CAF"
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 4,
+  "final_space": false,
+  "palette": {
+    "claude": "#D97757",
+    "claude-deep": "#BF5B3F",
+    "kraft": "#E8DCC4",
+    "ivory": "#F5F0E6",
+    "ink": "#1F1F1E",
+    "char": "#3D3D3A",
+    "muted": "#8C8A82",
+    "sage": "#8BA888",
+    "berry": "#A24E5A",
+    "sky": "#6A8CAF"
   },
-  "blocks": [ { "type": "prompt", "alignment": "left", "segments": [ { "type": 
-          "claude", "style": "diamond", "leading_diamond": "\ue0b6", 
-          "trailing_diamond": "\ue0b0", "foreground": "p:ivory", "background": 
-          "p:claude-deep", "template": " \u2731 {{ .Model.DisplayName }}{{ if 
-          .Effort.Level }} {{ .Effort.Level }} {{ else }} ⚡ Off{{ end }} "
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "claude",
+          "style": "diamond",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "foreground": "p:ivory",
+          "background": "p:claude-deep",
+          "template": " ✱ {{ .Model.DisplayName }}{{ if .Effort.Level }} {{ .Effort.Level }} {{ else }} ⚡ Off{{ end }} "
         },
-        { "type": "claude", "style": "powerline", "powerline_symbol": "\ue0b0", 
-          "foreground": "p:ink", "background": "p:kraft", "background_templates": 
-          [
-            "{{ if gt .TokenUsagePercent 85 }}p:berry{{ end }}", "p:kraft" ], 
+        {
+          "type": "claude",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "p:ink",
+          "background": "p:kraft",
+          "background_templates": [
+            "{{ if gt .TokenUsagePercent 85 }}p:berry{{ end }}",
+            "p:kraft"
+          ],
           "foreground_templates": [
-            "{{ if gt .TokenUsagePercent 85 }}p:ivory{{ end }}", "p:ink" ], 
+            "{{ if gt .TokenUsagePercent 85 }}p:ivory{{ end }}",
+            "p:ink"
+          ],
           "options": {
-            "gauge_marked_char": "\u2731", "gauge_unmarked_char": "\u00b7"
+            "gauge_marked_char": "✱",
+            "gauge_unmarked_char": "·"
           },
           "template": " {{ .TokenGaugeUsed }} {{ .TokenUsagePercent.String }}% "
         },
-        { "type": "claude", "style": "powerline", "powerline_symbol": "\ue0b0", 
-          "foreground": "p:ivory", "background": "p:claude", "template": " {{ 
-          .FormattedCost }} "
+        {
+          "type": "claude",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "p:ivory",
+          "background": "p:claude",
+          "template": " {{ .FormattedCost }} "
         },
-        { "type": "claude", "style": "powerline", "powerline_symbol": "\ue0b0", 
-          "foreground": "p:ink", "background": "p:kraft", "template": "{{ if gt 
-          .Cost.TotalLinesAdded 0 }} +{{ .Cost.TotalLinesAdded }}/-{{ 
-          .Cost.TotalLinesRemoved }} {{ end }}"
+        {
+          "type": "claude",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "p:ivory",
+          "background": "p:claude-deep",
+          "template": "{{ if .Env.POSH_LIFETIME_COST }} ∞ {{ .Env.POSH_LIFETIME_COST }} {{ end }}"
         },
-        { "type": "claude", "style": "powerline", "powerline_symbol": "\ue0b0", 
-          "foreground": "p:ivory", "background": "p:claude-deep", 
+        {
+          "type": "claude",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "p:ink",
+          "background": "p:kraft",
+          "template": "{{ if gt .Cost.TotalLinesAdded 0 }} +{{ .Cost.TotalLinesAdded }}/-{{ .Cost.TotalLinesRemoved }} {{ end }}"
+        },
+        {
+          "type": "claude",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "p:ivory",
+          "background": "p:claude",
           "background_templates": [
-            "{{ if gt .FiveHourUsage 80 }}p:berry{{ end }}", "p:claude-deep" ], 
-          "template": "{{ if gt .FiveHourUsage 0 }} \uf017 {{ 
-          .FiveHourUsage.String }}% {{ end }}"
+            "{{ if gt .FiveHourUsage 80 }}p:berry{{ end }}",
+            "p:claude"
+          ],
+          "template": "{{ if gt .FiveHourUsage 0 }}  5h {{ .FiveHourUsage.String }}% {{ end }}"
         },
-        { "type": "claude", "style": "powerline", "powerline_symbol": "\ue0b0", 
-          "foreground": "p:ivory", "background": "p:claude", "template": "{{ if 
-          .Agent.Name }} \udb80\udd54 {{ .Agent.Name }} {{ end }}"
+        {
+          "type": "claude",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "p:ivory",
+          "background": "p:claude-deep",
+          "background_templates": [
+            "{{ if gt .SevenDayUsage 80 }}p:berry{{ end }}",
+            "p:claude-deep"
+          ],
+          "template": "{{ if gt .SevenDayUsage 0 }}  7d {{ .SevenDayUsage.String }}% {{ end }}"
         },
-        { "type": "claude", "style": "powerline", "powerline_symbol": "\ue0b0", 
-          "foreground": "p:ink", "background": "p:kraft", "template": "{{ if 
-          .Worktree.Name }} \udb84\udcd2 {{ .Worktree.Name }}{{ if 
-          .Worktree.Branch }} \ue0a0 {{ .Worktree.Branch }}{{ end }} {{ end }}"
+        {
+          "type": "claude",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "p:ivory",
+          "background": "p:claude",
+          "template": "{{ if .Agent.Name }} 󰅔 {{ .Agent.Name }} {{ end }}"
         },
-        { "type": "path", "style": "powerline", "powerline_symbol": "\ue0b0", 
-          "foreground": "p:ivory", "background": "p:claude", "options": {
-            "style": "agnoster_short", "max_depth": 2, "home_icon": "~", 
-            "folder_separator_icon": " \ue0b1 "
+        {
+          "type": "claude",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "p:ink",
+          "background": "p:kraft",
+          "template": "{{ if .Worktree.Name }} 󱃒 {{ .Worktree.Name }}{{ if .Worktree.Branch }}  {{ .Worktree.Branch }}{{ end }} {{ end }}"
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "p:ivory",
+          "background": "p:claude",
+          "options": {
+            "style": "agnoster_short",
+            "max_depth": 2,
+            "home_icon": "~",
+            "folder_separator_icon": "  "
           },
           "template": " {{ .Path }} "
         },
-        { "type": "git", "style": "powerline", "powerline_symbol": "\ue0b0", 
-          "foreground": "p:ink", "background": "p:kraft", "background_templates": 
-          [
-            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:claude-deep{{ end 
-            }}"
-          ], "foreground_templates": [ "{{ if or (.Working.Changed) 
-            (.Staging.Changed) }}p:ivory{{ end }}"
-          ], "options": { "fetch_status": true, "branch_icon": "\ue0a0 "
+        {
+          "type": "git",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "p:ink",
+          "background": "p:kraft",
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:claude-deep{{ end }}"
+          ],
+          "foreground_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:ivory{{ end }}"
+          ],
+          "options": {
+            "fetch_status": true,
+            "branch_icon": " "
           },
-          "template": " {{ .HEAD }}{{ if .Working.Changed }} \u25cf{{ end }} "
+          "template": " {{ .HEAD }}{{ if .Working.Changed }} ●{{ end }} "
         }
       ]
     }
